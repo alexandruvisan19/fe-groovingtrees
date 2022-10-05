@@ -324,7 +324,7 @@ function generateSitemap({ posts = [], pages = [] }, nextConfig = {}) {
           ${posts
             .map((post) => {
               return `<url>
-                        <loc>${homepage}/${post.slug}${trailingSlash ? '/' : ''}</loc>
+                        <loc>${homepage}/posts/${post.slug}${trailingSlash ? '/' : ''}</loc>
                         <lastmod>${new Date(post.modified).toISOString()}</lastmod>
                       </url>
                   `;

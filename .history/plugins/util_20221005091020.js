@@ -258,8 +258,8 @@ function generateFeed({ posts = [], metadata = {} }) {
   posts.map((post) => {
     feed.item({
       title: post.title,
-      guid: `${homepage}/${post.slug}`,
-      url: `${homepage}/${post.slug}`,
+      guid: `${homepage}${post.slug}`,
+      url: `${homepage}/posts/${post.slug}`,
       date: post.date,
       description: post.excerpt,
       author: post.author,
@@ -324,7 +324,7 @@ function generateSitemap({ posts = [], pages = [] }, nextConfig = {}) {
           ${posts
             .map((post) => {
               return `<url>
-                        <loc>${homepage}/${post.slug}${trailingSlash ? '/' : ''}</loc>
+                        <loc>${homepage}/posts/${post.slug}${trailingSlash ? '/' : ''}</loc>
                         <lastmod>${new Date(post.modified).toISOString()}</lastmod>
                       </url>
                   `;
