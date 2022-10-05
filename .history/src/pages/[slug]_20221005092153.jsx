@@ -341,7 +341,7 @@ export default function Post({ post, socialImage, related }) {
             </form>
           </div>
 
-          {recentPosts.length > 0 && (
+          {recentPosts.length && (
             <div>
               <p className="font-semibold !mb-0">Recent Posts 🎋</p>
               <ul className="list-none !pl-0 !text-base !mt-0">
