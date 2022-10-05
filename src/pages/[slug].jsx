@@ -62,10 +62,6 @@ export default function Post({ post, socialImage, related }) {
     maxResults: 5,
   });
 
-  // When the search visibility changes, we want to add an event listener that allows us to
-  // detect when someone clicks outside of the search box, allowing us to close the results
-  // when focus is drawn away from search
-
   useEffect(() => {
     // If we don't have a query, don't need to bother adding an event listener
     // but run the cleanup in case the previous state instance exists
