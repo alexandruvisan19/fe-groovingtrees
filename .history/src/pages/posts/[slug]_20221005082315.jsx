@@ -274,12 +274,14 @@ export default function Post({ post, socialImage, related }) {
                   <p>Last updated on {formatDate(modified)}.</p>
                   {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
                     <div>
-                      <span>
-                        More from{' '}
-                        <Link href={relatedPostsTitle.link}>
-                          <a>{relatedPostsTitle.name}</a>
-                        </Link>
-                      </span>
+                      {relatedPostsTitle.name (
+                        <span>
+                          More from{' '}
+                          <Link href={relatedPostsTitle.link}>
+                            <a>{relatedPostsTitle.name}</a>
+                          </Link>
+                        </span>
+                      )}
                     </div>
                   )}
                 </div>
