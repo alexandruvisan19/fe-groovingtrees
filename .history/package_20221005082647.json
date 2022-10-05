@@ -3,6 +3,7 @@
   "homepage": "https://groovingtrees.com",
   "version": "0.1.0",
   "license": "MIT",
+  "author": "Colby Fayock <hello@colbyfayock.com>",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
