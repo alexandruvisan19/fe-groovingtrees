@@ -341,23 +341,21 @@ export default function Post({ post, socialImage, related }) {
             </form>
           </div>
 
-          {recentPosts.length && (
-            <div>
-              <p className="font-semibold !mb-0">Recent Posts 🎋</p>
-              <ul className="list-none !pl-0 !text-base !mt-0">
-                {recentPosts.map((post) => {
-                  const { id, slug, title } = post;
-                  return (
-                    <li className="!pl-0" key={id}>
-                      <Link href={postPathBySlug(slug)}>
-                        <a className="no-underline hover:text-yellow-700 hover:underline">{title}</a>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
+{          <div>
+            <p className="font-semibold !mb-0">Recent Posts 🎋</p>
+            <ul className="list-none !pl-0 !text-base !mt-0">
+              {recentPosts.map((post) => {
+                const { id, slug, title } = post;
+                return (
+                  <li className="!pl-0" key={id}>
+                    <Link href={postPathBySlug(slug)}>
+                      <a className="no-underline hover:text-yellow-700 hover:underline">{title}</a>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>}
 
           {toc.length && (
             <div className="sticky top-20">
