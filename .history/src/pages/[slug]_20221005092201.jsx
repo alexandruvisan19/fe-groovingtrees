@@ -58,6 +58,10 @@ export default function Post({ post, socialImage, related }) {
     .processSync(post.content)
     .toString();
 
+  // const { title } = metadata;
+
+  // const hasRecentCategories = Array.isArray(categories) && categories.length > 0;
+
   const { query, results, search, clearSearch } = useSearch({
     maxResults: 5,
   });
