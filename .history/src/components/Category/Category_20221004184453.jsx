@@ -1,3 +1,7 @@
+import Link from 'next/link';
+
+import { categoryPathBySlug } from 'lib/categories';
+
 const DEFAULT_METADATA_OPTIONS = {
   compactCategories: true,
 };

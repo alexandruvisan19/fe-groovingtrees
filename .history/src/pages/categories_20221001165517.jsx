@@ -9,6 +9,7 @@ import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
+import SectionTitle from 'components/SectionTitle';
 
 export default function Categories({ categories }) {
   const { metadata = {} } = useSite();
