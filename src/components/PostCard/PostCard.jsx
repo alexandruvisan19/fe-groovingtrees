@@ -27,7 +27,7 @@ const PostCard = ({ post, options = {} }) => {
     <div>
       {featuredImage && (
         <>
-          <div className="prose relative rounded-lg overflow-hidden">
+          <div className="rounded-lg overflow-hidden text-center">
             <Image
               className="object-cover"
               src={featuredImage.sourceUrl}
@@ -42,7 +42,7 @@ const PostCard = ({ post, options = {} }) => {
 
       <div className="pt-1 pb-2 pr-5 pl-5">
         <h3
-          className="prose text-2xl font-bold pb-4 pt-1"
+          className=" text-2xl font-bold pb-4 pt-1"
           dangerouslySetInnerHTML={{
             __html: title,
           }}
@@ -50,7 +50,7 @@ const PostCard = ({ post, options = {} }) => {
 
         {excerpt && (
           <div
-            className="prose pb-4"
+            className=" pb-4"
             dangerouslySetInnerHTML={{
               __html: sanitizeExcerpt(excerpt),
             }}

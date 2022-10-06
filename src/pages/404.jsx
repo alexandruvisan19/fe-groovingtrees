@@ -13,16 +13,16 @@ export default function Custom404() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <Section>
-        <Container>
+        <div className="flex flex-col items-center m-14 p-2 prose max-w-full h-[40vh]">
           <h1>Page Not Found</h1>
-          <p>404</p>
-          <p>The page you were looking for could not be found.</p>
-          <p>
+          <p className="text-4xl !mt-2 !mb-6">404</p>
+          <p className="!mb-0 !mt-0">The page you were looking for could not be found.</p>
+          <p className="!mt-0">
             <Link href="/">
-              <a>Go back home</a>
+              <a className="text-blue-600">Go back home</a>
             </Link>
           </p>
-        </Container>
+        </div>
       </Section>
     </Layout>
   );

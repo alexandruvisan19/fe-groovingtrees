@@ -1,6 +1,6 @@
 const Header = ({ children }) => {
   return (
-    <header className="relative flex flex-nowrap justify-center md:p-4">
+    <header className="bg-autumn-100 relative flex flex-nowrap justify-center md:shadow-sm">
       <div className="text-center">{children}</div>
     </header>
   );

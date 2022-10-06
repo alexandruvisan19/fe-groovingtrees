@@ -85,7 +85,7 @@ const Footer = () => {
 
       <Section>
         <Container>
-          <p className="text-center bg-trees5-500 text-black font-bold">
+          <p className="text-center bg-autumn-300 text-black font-bold">
             &copy; {new Date().getFullYear()} {title}
           </p>
         </Container>

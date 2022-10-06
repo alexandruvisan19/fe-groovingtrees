@@ -72,13 +72,6 @@ export default function Post({ post, socialImage, related }) {
     addDocumentOnClick();
     addResultsRoving();
 
-    // When the search box opens up, additionall find the search input and focus
-    // on the element so someone can start typing right away
-
-    const searchInput = Array.from(formRef.current.elements).find((input) => input.type === 'search');
-
-    searchInput.focus();
-
     return () => {
       removeResultsRoving();
       removeDocumentOnClick();
@@ -229,8 +222,8 @@ export default function Post({ post, socialImage, related }) {
 
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
 
-      <div className="block lg:flex pt-0 md:pt-8">
-        <div className="prose prose-xl prose-lime prose-w-md prose-img:rounded-xl prose-figcaption:text-center hover:prose-a:text-trees5-500 hover:prose-img:shadow-lg max-w-none pl-4 pr-4 sm:pr-12 lg:border-r mx-auto">
+      <div className="max-w-65xl m-auto block lg:flex pt-0 md:pt-8">
+        <div className="prose prose-md md:prose-xl prose-w-md prose-img:rounded-xl prose-figcaption:text-center prose-a:text-autumn-500 hover:prose-a:text-autumn-300 hover:prose-img:shadow-lg max-w-none pl-4 pr-4 md:pr-12 lg:border-r mx-auto">
           <HeaderPost>
             <h1
               className="text-center !mb-4"
@@ -280,7 +273,7 @@ export default function Post({ post, socialImage, related }) {
           </Content>
         </div>
 
-        <aside className="prose prose-lg md:prose-xl prose-a:text-trees5-100 hover:prose-a:text-trees5-200 mt-2 sm:ml-6 pl-4 pr-4 hidden lg:block">
+        <aside className="prose prose-lg md:prose-xl mt-2 sm:ml-6 pl-4 pr-4 hidden lg:block">
           <div>
             <form
               className="flex items-center relative w-full max-h-full p-1"
@@ -289,7 +282,7 @@ export default function Post({ post, socialImage, related }) {
               data-search-is-active={!!query}
             >
               <input
-                className="pr-2 pl-2 border border-blue-600"
+                className="pr-2 pl-2 border-2 border-autumn-300"
                 type="search"
                 name="q"
                 value={query || ''}
@@ -299,7 +292,7 @@ export default function Post({ post, socialImage, related }) {
                 required
               />
               <button
-                className="flex items-center pr-2 pl-2 bg-blue-600 text-white border border-blue-600"
+                className="flex items-center pr-2 pl-2 bg-autumn-300 text-black border-2 border-autumn-300"
                 type="submit"
               >
                 Search <FaSearch className="pl-1" size={18} />
@@ -308,7 +301,7 @@ export default function Post({ post, socialImage, related }) {
                 className={
                   !query
                     ? 'hidden'
-                    : 'block absolute top-full w-full bg-white p-2 shadow-sm rounded-sm z-40 border-4 border-yellow-700'
+                    : 'block absolute top-full w-full bg-white p-2 shadow-lg rounded-sm z-40 border border-gray-200'
                 }
               >
                 {results.length > 0 && (
@@ -317,7 +310,7 @@ export default function Post({ post, socialImage, related }) {
                       return (
                         <li className="prose-li:pl-0" key={slug}>
                           <Link tabIndex={index} href={postPathBySlug(slug)}>
-                            <a className="no-underline hover:text-yellow-700 hover:underline">{title}</a>
+                            <a className="no-underline hover:text-autumn-300 hover:underline">{title}</a>
                           </Link>
                         </li>
                       );
@@ -335,14 +328,14 @@ export default function Post({ post, socialImage, related }) {
 
           {recentPosts.length > 0 && (
             <div>
-              <p className="font-semibold !mb-0">Recent Posts 🎋</p>
+              <p className="font-semibold !mb-0 border-b border-gray-200">Recent Posts 🎋</p>
               <ul className="list-none !pl-0 !text-base !mt-0">
                 {recentPosts.map((post) => {
                   const { id, slug, title } = post;
                   return (
                     <li className="!pl-0" key={id}>
                       <Link href={postPathBySlug(slug)}>
-                        <a className="no-underline hover:text-yellow-700 hover:underline">{title}</a>
+                        <a className="no-underline hover:text-autumn-500 hover:underline">{title}</a>
                       </Link>
                     </li>
                   );
@@ -353,12 +346,12 @@ export default function Post({ post, socialImage, related }) {
 
           {toc.length > 0 && (
             <div className="sticky top-20">
-              <p className="font-semibold !mb-0">Table of Contents 📑</p>
+              <p className="font-semibold !mb-0 border-b border-gray-200">Table of Contents 📑</p>
               <ul className="list-none !pl-0 !text-base !mt-0">
                 {toc.map(({ id, title }) => {
                   return (
                     <li className="!pl-0" key={id}>
-                      <a className="no-underline hover:text-yellow-700 hover:underline" href={`#${id}`}>
+                      <a className="no-underline hover:text-autumn-500 hover:underline" href={`#${id}`}>
                         {title}
                       </a>
                     </li>

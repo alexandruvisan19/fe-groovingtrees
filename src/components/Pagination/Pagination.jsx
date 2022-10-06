@@ -61,7 +61,7 @@ const Pagination = ({ pagesCount, currentPage, basePath, addCanonical = true }) 
         {hasPreviousPage && (
           <Link href={`/`}>
             <a
-              className="mr-auto flex items-center bg-trees1-200 border pt-2 pb-2 pl-4 pr-4 rounded-md hover:bg-trees1-500 shadow-sm"
+              className="mr-auto flex items-center border pt-2 pb-2 pl-4 pr-4 rounded-md bg-autumn-200 hover:bg-autumn-300 shadow-sm"
               aria-label="Goto Previous Page"
             >
               <PreviousIcon /> Previous
@@ -80,7 +80,7 @@ const Pagination = ({ pagesCount, currentPage, basePath, addCanonical = true }) 
             return active ? (
               <li className="hidden md:block" key={page}>
                 <span
-                  className="pt-2 pb-2 pl-4 pr-4 font-semibold shadow-sm"
+                  className="pt-2 pb-2 pl-4 pr-4 font-bold shadow-sm rounded"
                   aria-label={`Current Page, Page ${page}`}
                   aria-current="true"
                 >
@@ -91,7 +91,7 @@ const Pagination = ({ pagesCount, currentPage, basePath, addCanonical = true }) 
               <li className="hidden md:block" key={page}>
                 <Link href={`${path}${page}`}>
                   <a aria-label={`Goto Page ${page}`}>
-                    <span className="bg-trees1-200 border rounded-md pt-2 pb-2 pl-4 pr-4 font-medium hover:bg-trees1-500 shadow-sm">
+                    <span className="bg-trees1-200 border rounded-md pt-2 pb-2 pl-4 pr-4 hover:bg-trees1-500 shadow-sm bg-autumn-200 hover:bg-autumn-300 font-semibold">
                       {page}
                     </span>
                   </a>
@@ -109,7 +109,7 @@ const Pagination = ({ pagesCount, currentPage, basePath, addCanonical = true }) 
         {hasNextPage && (
           <Link href={`${path}${currentPage + 1}`}>
             <a
-              className="flex items-center bg-trees1-200 border pt-2 pb-2 pl-4 pr-4 rounded-md hover:bg-trees1-500 shadow-sm"
+              className="flex items-center border pt-2 pb-2 pl-4 pr-4 rounded-md bg-autumn-200 hover:bg-autumn-300 shadow-sm"
               aria-label="Goto Next Page"
             >
               Next <NextIcon />

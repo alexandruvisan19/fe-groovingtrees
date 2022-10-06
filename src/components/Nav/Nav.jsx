@@ -163,7 +163,7 @@ const Nav = () => {
   }
 
   return (
-    <nav className="sticky top-0 z-50 bg-trees1-200 border-b border-gray-200">
+    <nav className="sticky top-0 z-50  border-b bg-white border-gray-200">
       <Section className="max-w-65xl m-auto">
         <div className="flex justify-between items-center z-15">
           <Link href="/">
@@ -178,7 +178,7 @@ const Nav = () => {
             )}
           </span>
 
-          <ul className="menu md:flex md:items-center z-[-1] text-lg md:z-auto md:static absolute bg-trees1-200 w-full left-0 md:w-auto md:py-0 md:pl-0 pl-4 pb-4 md:opacity-100 opacity-0 top-[57px] transition shadow-lg md:shadow-none">
+          <ul className="menu md:flex md:items-center z-[-1] text-lg md:z-auto md:static absolute  w-full left-0 md:w-auto md:py-0 md:pl-0 pl-4 pb-4 md:opacity-100 opacity-0 top-[65px] transition shadow-lg md:shadow-none bg-white">
             {categories.map((category) => {
               const { id, slug, name } = category;
               return (

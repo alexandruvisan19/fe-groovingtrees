@@ -4,7 +4,7 @@ const Metadata = ({ author, date }) => {
   return (
     <div className="mt-auto w-full">
       <hr />
-      <div className="prose flex justify-between p-5 mt-auto">
+      <div className="flex justify-between p-5 mt-auto">
         {author && <div>By {author.name}</div>}
         {date && (
           <div>
