@@ -8,15 +8,13 @@ import useSite from 'hooks/use-site';
 import usePageMetadata from 'hooks/use-page-metadata';
 
 import Layout from 'components/Layout';
-import HeaderPost from 'components/HeaderPost';
-import Content from 'components/Content';
 import Section from 'components/Section';
 import Container from 'components/Container';
-import FeaturedImage from 'components/FeaturedImage';
+import Header from 'components/Header';
 import Breadcrumbs from 'components/Breadcrumbs';
 
 export default function Page({ page, breadcrumbs }) {
-  const { title, metaTitle, description, slug, content, featuredImage, children } = page;
+  const { title, metaTitle, description, slug, content, children } = page;
 
   const { metadata: siteMetadata = {} } = useSite();
 
@@ -41,61 +39,56 @@ export default function Page({ page, breadcrumbs }) {
 
   return (
     <Layout>
-      <Helmet {...helmetSettings} />
+      <div>
+        <Helmet {...helmetSettings} />
 
-      <WebpageJsonLd
-        title={metadata.title}
-        description={metadata.description}
-        siteTitle={siteMetadata.title}
-        slug={slug}
-      />
+        <WebpageJsonLd
+          title={metadata.title}
+          description={metadata.description}
+          siteTitle={siteMetadata.title}
+          slug={slug}
+        />
 
-      <HeaderPost>
-        {hasBreadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
-        {featuredImage && (
-          <FeaturedImage
-            {...featuredImage}
-            src={featuredImage.sourceUrl}
-            dangerouslySetInnerHTML={featuredImage.caption}
-          />
-        )}
-        <h1>{title}</h1>
-      </HeaderPost>
+        <Header>
+          {hasBreadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+          <h1 className="prose">{title}</h1>
+        </Header>
 
-      <Content>
-        <Section>
-          <Container>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: content,
-              }}
-            />
-          </Container>
-        </Section>
-
-        {hasChildren && (
+        <div className="max-w-65xl m-auto prose">
           <Section>
             <Container>
-              <aside>
-                <p>
-                  <strong>{title}</strong>
-                </p>
-                <ul>
-                  {children.map((child) => {
-                    return (
-                      <li key={child.id}>
-                        <Link href={child.uri}>
-                          <a>{child.title}</a>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </aside>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: content,
+                }}
+              />
             </Container>
           </Section>
-        )}
-      </Content>
+
+          {hasChildren && (
+            <Section>
+              <Container>
+                <aside>
+                  <p>
+                    <strong>{title}</strong>
+                  </p>
+                  <ul>
+                    {children.map((child) => {
+                      return (
+                        <li key={child.id}>
+                          <Link href={child.uri}>
+                            <a>{child.title}</a>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </aside>
+              </Container>
+            </Section>
+          )}
+        </div>
+      </div>
     </Layout>
   );
 }
