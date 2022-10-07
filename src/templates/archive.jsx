@@ -7,7 +7,6 @@ import useSite from 'hooks/use-site';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
-import Container from 'components/Container';
 import PostCard from 'components/PostCard';
 import Pagination from 'components/Pagination/Pagination';
 import { postPathBySlug } from 'lib/posts';
