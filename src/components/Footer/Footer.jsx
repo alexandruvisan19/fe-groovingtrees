@@ -1,54 +1,45 @@
 import Link from 'next/link';
 
 import useSite from 'hooks/use-site';
-import { postPathBySlug } from 'lib/posts';
 import { categoryPathBySlug } from 'lib/categories';
+import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
 
 import Section from 'components/Section';
 import Container from 'components/Container';
+import NavListItem from 'components/NavListItem';
 
 const Footer = () => {
-  const { metadata = {}, recentPosts = [], categories = [] } = useSite();
+  const { metadata = {}, recentPosts = [], categories = [], menus } = useSite();
   const { title } = metadata;
 
   const hasRecentPosts = Array.isArray(recentPosts) && recentPosts.length > 0;
   const hasRecentCategories = Array.isArray(categories) && categories.length > 0;
   const hasMenu = hasRecentPosts || hasRecentCategories;
 
+  const navigation = findMenuByLocation(menus, [
+    process.env.WORDPRESS_MENU_LOCATION_NAVIGATION,
+    MENU_LOCATION_NAVIGATION_DEFAULT,
+  ]);
+
   return (
     <footer className="border-t bg-trees1-200">
-      <div className="max-w-65xl m-auto">
+      <div className="max-w-65xl m-auto mt-2 mb-2 text-left">
         {hasMenu && (
           <Section>
             <Container>
-              <ul className="flex justify-between flex-wrap">
-                {hasRecentPosts && (
-                  <li className="p-4">
-                    <Link href="/posts/">
-                      <a>
-                        <strong>Recent Posts</strong>
-                      </a>
-                    </Link>
-                    <ul>
-                      {recentPosts.map((post) => {
-                        const { id, slug, title } = post;
-                        return (
-                          <li key={id}>
-                            <Link href={postPathBySlug(slug)}>
-                              <a>{title}</a>
-                            </Link>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </li>
-                )}
+              <ul className="block md:flex flex-wrap justify-evenly md:flex-nowrap">
+                <li className="p-6">
+                  <p className="text-lg font-semibold">Company</p>
+                  <ul>
+                    {navigation?.map((listItem) => {
+                      return <NavListItem key={listItem.id} item={listItem} />;
+                    })}
+                  </ul>
+                </li>
                 {hasRecentCategories && (
-                  <li className="p-4">
+                  <li className="p-6">
                     <Link href="/categories/">
-                      <a>
-                        <strong>Categories</strong>
-                      </a>
+                      <p className="text-lg font-semibold">Categories</p>
                     </Link>
                     <ul>
                       {categories.map((category) => {
@@ -64,10 +55,8 @@ const Footer = () => {
                     </ul>
                   </li>
                 )}
-                <li className="p-4">
-                  <p>
-                    <strong>More</strong>
-                  </p>
+                <li className="p-6">
+                  <p className="text-lg font-semibold">More</p>
                   <ul>
                     <li>
                       <a href="/feed.xml">RSS</a>

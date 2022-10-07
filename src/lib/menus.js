@@ -96,13 +96,22 @@ export const parseHierarchicalMenu = (
  */
 
 export function findMenuByLocation(menus, location) {
-  if (typeof location !== 'string') {
-    throw new Error('Failed to find menu by location - location is not a string.');
+  let menu;
+
+  if (!Array.isArray(location)) {
+    location = [location];
   }
 
-  const menu = menus.find(({ locations }) => {
-    return locations.map((loc) => loc.toUpperCase()).includes(location.toUpperCase());
-  });
+  const searchLocations = [...location];
+  do {
+    menu = menus.find(function ({ locations }) {
+      return locations.map((loc) => loc.toUpperCase()).includes(searchLocations.shift()?.toUpperCase());
+    });
+  } while (!menu && location.length > 0);
 
-  return menu && parseHierarchicalMenu(menu.menuItems);
+  if (!menu) {
+    return null;
+  }
+
+  return parseHierarchicalMenu(menu.menuItems);
 }
