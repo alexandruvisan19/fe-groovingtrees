@@ -11,7 +11,7 @@ const ImagePost = ({ children, width = '1200', height = '630', src, alt, srcSet,
           src={src}
           alt={alt || ''}
           srcSet={srcSet}
-          layout="fill"
+          layout="intrinsic"
           priority
         />
       </div>
