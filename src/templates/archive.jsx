@@ -30,25 +30,27 @@ export default function TemplateArchive({ title = 'Archive', Title, posts, slug,
       <WebpageJsonLd title={title} description={metadata.description} siteTitle={siteMetadata.title} slug={slug} />
 
       <Header>
-        <Container>
-          <h1>{Title || title}</h1>
+        <div className="p-12">
+          <h1 className="text-2xl md:text-4xl font-extrabold">{Title || title}</h1>
           {metadata.description && (
             <p
+              className="text-xl md:text-2xl font-semibold"
               dangerouslySetInnerHTML={{
                 __html: metadata.description,
               }}
             />
           )}
-        </Container>
+        </div>
       </Header>
 
-      <div className="md:pl-3 md:pr-3">
+      <div className=" max-w-65xl m-auto md:pl-3 md:pr-3 text-center">
         <Section>
+          <h2 className="mt-8 mb-4 pb-4 text-3xl border-b border-gray-200 font-bold">Recent Posts</h2>
           <ul className="columns-1 md:columns-2 lg:columns-3 mb-14 gap-8">
             {posts.map((post) => {
               return (
                 <li
-                  className="shadow rounded-xl text-center md:text-left align-top relative hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer my-4 mx-1 inline-block group"
+                  className="max-w-lg shadow rounded-xl text-center md:text-left align-top relative hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer my-4 mx-1 inline-block group"
                   key={post.slug}
                 >
                   <Link href={postPathBySlug(post.slug)}>
