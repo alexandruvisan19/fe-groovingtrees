@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet';
 
 import Layout from 'components/Layout';
 import Section from 'components/Section';
-import Container from 'components/Container';
 
 export default function Custom404() {
   return (
