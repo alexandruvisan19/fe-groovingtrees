@@ -8,12 +8,12 @@ const NavListItem = ({ item }) => {
   return (
     <li key={item.id}>
       {!item.path.includes('http') && !item.target && (
-        <Link href={`/page${item.path}`}>
+        <Link href={`page${item.path}`}>
           <a title={item.title}>{item.label}</a>
         </Link>
       )}
       {item.path.includes('http') && (
-        <a href={`/page${item.path}`} title={item.title} target={item.target}>
+        <a href={`page${item.path}`} title={item.title} target={item.target}>
           {item.label}
         </a>
       )}
