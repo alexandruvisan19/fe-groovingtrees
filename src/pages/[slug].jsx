@@ -19,52 +19,20 @@ import Container from 'components/Container';
 import Content from 'components/Content';
 import MetadataPost from 'components/MetadataPost';
 import FeaturedImage from 'components/FeaturedImage';
-
-import { unified } from 'unified';
-import rehypeParse from 'rehype-parse';
-import rehypeStringify from 'rehype-stringify';
-import parameterize from 'parameterize';
-import { visit } from 'unist-util-visit';
+import TableOfContents from 'components/TableOfContents';
+import RecentPosts from 'components/RecentPosts';
 
 const SEARCH_HIDDEN = 'hidden';
 
 export default function Post({ post, socialImage, related }) {
-  const { title, metaTitle, description, date, author, categories, modified, featuredImage, excerpt } = post;
+  const { title, metaTitle, description, date, author, categories, modified, featuredImage, excerpt, content } = post;
   const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
   const formRef = useRef();
-
-  const toc = [];
-
-  const content = unified()
-    .use(rehypeParse, {
-      fragment: true,
-    })
-    .use(() => {
-      return (tree) => {
-        visit(tree, 'element', (node) => {
-          if (node.tagName === 'h2') {
-            const id = parameterize(node.children[0].value);
-            node.properties.id = id;
-
-            toc.push({
-              id,
-              title: node.children[0].value,
-            });
-          }
-        });
-      };
-    })
-    .use(rehypeStringify)
-    .processSync(post.content)
-    .toString();
-
   const { query, results, search, clearSearch } = useSearch({
     maxResults: 5,
   });
 
   useEffect(() => {
-    // If we don't have a query, don't need to bother adding an event listener
-    // but run the cleanup in case the previous state instance exists
     if (searchVisibility === SEARCH_HIDDEN) {
       removeDocumentOnClick();
     }
@@ -79,25 +47,13 @@ export default function Post({ post, socialImage, related }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchVisibility]);
 
-  /**
-   * addDocumentOnClick
-   */
-
   function addDocumentOnClick() {
     document.body.addEventListener('click', handleOnDocumentClick, true);
   }
 
-  /**
-   * removeDocumentOnClick
-   */
-
   function removeDocumentOnClick() {
     document.body.removeEventListener('click', handleOnDocumentClick, true);
   }
-
-  /**
-   * handleOnDocumentClick
-   */
 
   function handleOnDocumentClick(e) {
     if (!e.composedPath().includes(formRef.current)) {
@@ -106,35 +62,19 @@ export default function Post({ post, socialImage, related }) {
     }
   }
 
-  /**
-   * handleOnSearch
-   */
-
   function handleOnSearch({ currentTarget }) {
     search({
       query: currentTarget.value,
     });
   }
 
-  /**
-   * addResultsRoving
-   */
-
   function addResultsRoving() {
     document.body.addEventListener('keydown', handleResultsRoving);
   }
 
-  /**
-   * removeResultsRoving
-   */
-
   function removeResultsRoving() {
     document.body.removeEventListener('keydown', handleResultsRoving);
   }
-
-  /**
-   * handleResultsRoving
-   */
 
   function handleResultsRoving(e) {
     const focusElement = document.activeElement;
@@ -159,12 +99,6 @@ export default function Post({ post, socialImage, related }) {
       }
     }
   }
-
-  /**
-   * escFunction
-   */
-
-  // pressing esc while search is focused will close it
 
   const escFunction = useCallback((event) => {
     if (event.keyCode === 27) {
@@ -326,47 +260,11 @@ export default function Post({ post, socialImage, related }) {
             </form>
           </div>
 
-          {recentPosts.length > 0 && (
-            <div>
-              <p className="font-semibold !mb-0 border-b border-gray-200">Recent Posts 🎋</p>
-              <ul className="list-none !pl-0 !text-base !mt-0">
-                {recentPosts.map((post) => {
-                  const { id, slug, title } = post;
-                  return (
-                    <li className="!pl-0" key={id}>
-                      <Link href={postPathBySlug(slug)}>
-                        <a className="no-underline hover:text-autumn-500 hover:underline">{title}</a>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
+          {recentPosts.length > 0 && <RecentPosts recentPosts={recentPosts} />}
 
-          {toc.length > 0 && (
-            <div className="sticky top-20">
-              <p className="font-semibold !mb-0 border-b border-gray-200">Table of Contents 📑</p>
-              <ul className="list-none !pl-0 !text-base !mt-0">
-                {toc.map(({ id, title }) => {
-                  return (
-                    <li className="!pl-0" key={id}>
-                      <a className="no-underline hover:text-autumn-500 hover:underline" href={`#${id}`}>
-                        {title}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
+          <TableOfContents content={content} />
         </aside>
       </div>
-
-      {/* <Section>
-        <Container>
-        </Container>
-      </Section> */}
     </Layout>
   );
 }
