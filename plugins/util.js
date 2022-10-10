@@ -314,7 +314,7 @@ function generateSitemap({ posts = [], pages = [] }, nextConfig = {}) {
         ${pages
           .map((page) => {
             return `<url>
-                      <loc>${homepage}/${page.slug}${trailingSlash ? '/' : ''}</loc>
+                      <loc>${homepage}/page/${page.slug}${trailingSlash ? '/' : ''}</loc>
                       <priority>0.3</priority>
                       <lastmod>${new Date(page.modified).toISOString()}</lastmod>
                     </url>
