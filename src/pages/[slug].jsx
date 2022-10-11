@@ -25,7 +25,7 @@ import RecentPosts from 'components/RecentPosts';
 const SEARCH_HIDDEN = 'hidden';
 
 export default function Post({ post, socialImage, related }) {
-  const { title, metaTitle, description, date, author, categories, modified, featuredImage, excerpt, content } = post;
+  const { title, metaTitle, description, date, author, categories, modified, featuredImage, content } = post;
   const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
   const formRef = useRef();
   const { query, results, search, clearSearch } = useSearch({
@@ -171,13 +171,6 @@ export default function Post({ post, socialImage, related }) {
                 {...featuredImage}
                 src={featuredImage.sourceUrl}
                 dangerouslySetInnerHTML={featuredImage.caption}
-              />
-            )}
-            {excerpt && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: excerpt,
-                }}
               />
             )}
           </HeaderPost>

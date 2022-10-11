@@ -27,7 +27,8 @@ export default function useToc(props) {
       };
     })
     .use(rehypeStringify)
-    .processSync(props);
+    .processSync(props)
+    .toString();
 
   return toc;
 }

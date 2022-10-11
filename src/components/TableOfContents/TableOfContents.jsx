@@ -5,7 +5,7 @@ import { BsArrowDownShort } from 'react-icons/bs';
 
 const TableOfContents = ({ content }) => {
   const toc = useToc(content);
-  const [tocVisibility, setTocVisibility] = useState(false);
+  const [tocVisibility, setTocVisibility] = useState(true);
 
   function hideHandler() {
     setTocVisibility((prevSetTocVisibility) => !prevSetTocVisibility);
