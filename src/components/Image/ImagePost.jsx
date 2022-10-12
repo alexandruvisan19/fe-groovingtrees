@@ -13,8 +13,9 @@ const ImagePost = ({ children, width = '1200', height = '630', src, alt, srcSet,
           src={src}
           alt={alt || ''}
           srcSet={srcSet}
+          loading="eager"
           layout="intrinsic"
-          priority
+          quality={30}
         />
       </div>
       {children && <figcaption>{children}</figcaption>}
