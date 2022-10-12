@@ -1,11 +1,12 @@
 import { formatDate } from 'lib/datetime';
+import { TbMinusVertical } from 'react-icons/tb';
 
 const MetadataPost = ({ author, date }) => {
   return (
-    <div className="text-base text-autumn-500 text-center">
+    <div className="text-sm uppercase">
       {date && author && (
-        <time pubdate="pubdate" dateTime={date}>
-          Published on {formatDate(date)} 🌱 By {author.name}
+        <time className="flex items-center" pubdate="pubdate" dateTime={date}>
+          Published on {formatDate(date)} <TbMinusVertical className="text-lg" /> By {author.name}
         </time>
       )}
     </div>

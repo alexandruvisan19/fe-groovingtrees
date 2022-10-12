@@ -182,9 +182,9 @@ export function getBreadcrumbsByUri(uri, pages) {
   // Work through each of the segments, popping off the last chunk and finding the related
   // page to gather the metadata for the breadcrumbs
 
+  console.log(uri.split('/').filter((segment) => segment !== ''));
   do {
     const breadcrumb = pages.find((page) => page.uri === `/${uriSegments.join('/')}/`);
-
     // If the breadcrumb is the active page, we want to pass udefined for the uri to
     // avoid the breadcrumbs being rendered as a link, given it's the current page
 

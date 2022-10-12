@@ -21,11 +21,13 @@ import MetadataPost from 'components/MetadataPost';
 import FeaturedImage from 'components/FeaturedImage';
 import TableOfContents from 'components/TableOfContents';
 import RecentPosts from 'components/RecentPosts';
+import Metadata from 'components/Metadata';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const SEARCH_HIDDEN = 'hidden';
 
 export default function Post({ post, socialImage, related }) {
-  const { title, metaTitle, description, date, author, categories, modified, featuredImage, content } = post;
+  const { title, metaTitle, description, date, author, categories, modified, featuredImage, content, slug } = post;
   const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
   const formRef = useRef();
   const { query, results, search, clearSearch } = useSearch({
@@ -157,10 +159,11 @@ export default function Post({ post, socialImage, related }) {
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
 
       <div className="max-w-65xl m-auto block lg:flex pt-0 md:pt-8">
-        <div className="prose prose-md md:prose-xl prose-w-md prose-img:rounded-xl prose-figcaption:text-center prose-a:text-autumn-500 hover:prose-a:text-autumn-300 hover:prose-img:shadow-lg max-w-none pl-4 pr-4 md:pr-12 lg:border-r mx-auto">
+        <div className="prose prose-lg prose-w-md prose-img:rounded-xl prose-figcaption:text-center prose-a:text-autumn-500 hover:prose-a:text-autumn-300 hover:prose-img:shadow-lg max-w-none pl-4 pr-4 md:pr-12 lg:border-r mx-auto">
           <HeaderPost>
+            <Breadcrumbs categories={categories} options={metadataOptions} slug={slug} title={title} />
             <h1
-              className="text-center !mb-4"
+              className="!mb-4"
               dangerouslySetInnerHTML={{
                 __html: title,
               }}
@@ -264,7 +267,6 @@ export default function Post({ post, socialImage, related }) {
 
 export async function getStaticProps({ params = {} } = {}) {
   const { post } = await getPostBySlug(params?.slug);
-
   if (!post) {
     return {
       props: {},

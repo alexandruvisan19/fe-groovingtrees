@@ -52,11 +52,7 @@ export default function TemplateArchive({ title = 'Archive', Title, posts, slug,
                   className="max-w-lg shadow rounded-xl text-center md:text-left align-top relative hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer my-4 mx-1 inline-block group"
                   key={post.slug}
                 >
-                  <Link href={postPathBySlug(post.slug)}>
-                    <a>
-                      <PostCard post={post} />
-                    </a>
-                  </Link>
+                  <PostCard post={post} />
                 </li>
               );
             })}

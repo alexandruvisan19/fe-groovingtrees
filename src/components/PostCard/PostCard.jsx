@@ -4,6 +4,7 @@ import { sanitizeExcerpt } from 'lib/posts';
 
 import Metadata from 'components/Metadata';
 import Category from 'components/Category';
+import Link from 'next/link';
 
 const PostCard = ({ post, options = {} }) => {
   const { title, excerpt, date, author, categories, featuredImage } = post;
@@ -24,11 +25,13 @@ const PostCard = ({ post, options = {} }) => {
   }
 
   return (
-    <div>
+    <>
       {featuredImage && (
         <>
           <div className="rounded-lg overflow-hidden text-center">
             <Image
+              placeholder="blur"
+              blurDataURL={featuredImage.sourceUrl}
               className="object-cover"
               src={featuredImage.sourceUrl}
               alt={featuredImage.altText}
@@ -58,7 +61,7 @@ const PostCard = ({ post, options = {} }) => {
         )}
       </div>
       <Metadata {...metadata} />
-    </div>
+    </>
   );
 };
 

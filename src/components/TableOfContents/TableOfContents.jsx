@@ -22,23 +22,14 @@ const TableOfContents = ({ content }) => {
         )}
       </div>
       <ul className={'list-none !pl-0 !text-base !mt-0 ' + (tocVisibility ? 'block' : 'hidden')}>
-        {toc.map(({ id, title, subTitle }) => {
+        {toc.map(({ id, title }) => {
           return (
             <>
-              <li className="!pl-0" key={id}>
+              <li className="!pl-0" key={title}>
                 <a className="no-underline hover:text-autumn-500 hover:underline" href={`#${id}`}>
                   {title}
                 </a>
               </li>
-              {subTitle && (
-                <li>
-                  <ul>
-                    <li>
-                      <a href={`#${id}`}>{subTitle}</a>
-                    </li>
-                  </ul>
-                </li>
-              )}
             </>
           );
         })}

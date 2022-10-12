@@ -6,6 +6,8 @@ const ImagePost = ({ children, width = '1200', height = '630', src, alt, srcSet,
       <div>
         <Image
           className="rounded-lg"
+          placeholder="blur"
+          blurDataURL={src}
           width={width}
           height={height}
           src={src}
