@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet';
-import Link from 'next/link';
 import { WebpageJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
@@ -9,7 +8,6 @@ import Header from 'components/Header';
 import Section from 'components/Section';
 import PostCard from 'components/PostCard';
 import Pagination from 'components/Pagination/Pagination';
-import { postPathBySlug } from 'lib/posts';
 
 export default function TemplateArchive({ title = 'Archive', Title, posts, slug, metadata, pagination }) {
   const { metadata: siteMetadata = {} } = useSite();

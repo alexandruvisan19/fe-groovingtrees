@@ -4,7 +4,6 @@ import { sanitizeExcerpt } from 'lib/posts';
 
 import Metadata from 'components/Metadata';
 import Category from 'components/Category';
-import Link from 'next/link';
 
 const PostCard = ({ post, options = {} }) => {
   const { title, excerpt, date, author, categories, featuredImage } = post;

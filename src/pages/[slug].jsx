@@ -21,7 +21,6 @@ import MetadataPost from 'components/MetadataPost';
 import FeaturedImage from 'components/FeaturedImage';
 import TableOfContents from 'components/TableOfContents';
 import RecentPosts from 'components/RecentPosts';
-import Metadata from 'components/Metadata';
 import Breadcrumbs from 'components/Breadcrumbs';
 
 const SEARCH_HIDDEN = 'hidden';
