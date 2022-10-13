@@ -21,8 +21,10 @@ const Nav = () => {
     if (menu) {
       list.classList.add('opacity-100');
       list.classList.remove('opacity-0');
+      list.classList.remove('hidden');
     } else {
       list.classList.add('opacity-0');
+      list.classList.add('hidden');
       list.classList.remove('opacity-100');
     }
     setMenu(!menu);
