@@ -25,7 +25,7 @@ import Breadcrumbs from 'components/Breadcrumbs';
 
 const SEARCH_HIDDEN = 'hidden';
 
-export default function Post({ post, socialImage, related }) {
+export default function Post({ post, socialImage }) {
   const { title, metaTitle, description, date, author, categories, modified, featuredImage, content, slug } = post;
   const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
   const formRef = useRef();
@@ -147,7 +147,7 @@ export default function Post({ post, socialImage, related }) {
     compactCategories: false,
   };
 
-  const { posts: relatedPostsList, title: relatedPostsTitle } = related || {};
+  // const { posts: relatedPostsList, title: relatedPostsTitle } = related || {};
 
   const helmetSettings = helmetSettingsFromMetadata(metadata);
 
@@ -186,7 +186,7 @@ export default function Post({ post, socialImage, related }) {
                 />
                 <div className="text-center mt-8 text-gray-500 text-base">
                   <p>Last updated on {formatDate(modified)}.</p>
-                  {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
+                  {/* {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
                     <div>
                       <span>
                         More from{' '}
@@ -195,7 +195,7 @@ export default function Post({ post, socialImage, related }) {
                         </Link>
                       </span>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </Container>
             </Section>
