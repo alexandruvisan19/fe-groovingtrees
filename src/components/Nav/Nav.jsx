@@ -47,7 +47,7 @@ const Nav = () => {
                   <IoClose className="text-3xl" name="close" onClick={handleMenu} />
                 )}
               </span>
-              <ul className="menu md:flex md:items-center z-[-1] text-lg md:z-auto md:static absolute  w-full left-0 md:w-auto md:py-0 md:pl-0 pl-4 pb-4 md:opacity-100 opacity-0 top-[65px] transition shadow-lg md:shadow-none bg-white">
+              <ul className="menu md:flex md:items-center z-[-1] text-lg md:z-auto md:static absolute  w-full left-0 md:w-auto md:py-0 md:pl-0 pl-4 pb-4 md:opacity-100 opacity-0 top-[65px] transition shadow-lg md:shadow-none bg-white hidden">
                 {categories.map((category) => {
                   const { id, slug, name } = category;
                   return (
