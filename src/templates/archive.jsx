@@ -2,15 +2,24 @@ import { Helmet } from 'react-helmet';
 import { WebpageJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
+import Masonry from 'react-masonry-css';
 
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import PostCard from 'components/PostCard';
 import Pagination from 'components/Pagination/Pagination';
+import { postPathBySlug } from 'lib/posts';
+import Link from 'next/link';
 
 export default function TemplateArchive({ title = 'Archive', Title, posts, slug, metadata, pagination }) {
   const { metadata: siteMetadata = {} } = useSite();
+  const breakpointColumnsObj = {
+    default: 3,
+    1024: 3,
+    768: 2,
+    640: 1,
+  };
 
   if (process.env.WORDPRESS_PLUGIN_SEO !== true) {
     metadata.title = `${title} - ${siteMetadata.title}`;
@@ -39,22 +48,29 @@ export default function TemplateArchive({ title = 'Archive', Title, posts, slug,
           )}
         </div>
       </Header>
-
-      <div className=" max-w-65xl m-auto md:pl-3 md:pr-3 text-center">
+      <div className="max-w-65xl m-auto pr-4 pl-4 text-center">
         <Section>
           <h2 className="mt-8 mb-4 pb-4 text-3xl border-b border-gray-200 font-bold">Recent Posts</h2>
-          <ul className="columns-1 md:columns-2 lg:columns-3 mb-14 gap-8">
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid bg-white"
+            columnClassName="my-masonry-grid_column"
+          >
             {posts.map((post) => {
               return (
-                <li
-                  className="max-w-lg shadow rounded-xl text-center md:text-left align-top relative hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer my-4 mx-1 inline-block group"
+                <div
+                  className="max-w-lg shadow rounded-xl text-center md:text-left align-top relative hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer my-4 mx-1 inline-block group break-inside"
                   key={post.slug}
                 >
-                  <PostCard post={post} />
-                </li>
+                  <Link href={postPathBySlug(post.slug)}>
+                    <a>
+                      <PostCard post={post} />
+                    </a>
+                  </Link>
+                </div>
               );
             })}
-          </ul>
+          </Masonry>
 
           {pagination && (
             <Pagination

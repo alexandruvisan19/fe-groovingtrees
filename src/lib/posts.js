@@ -239,21 +239,12 @@ export function sanitizeExcerpt(excerpt) {
     throw new Error(`Failed to sanitize excerpt: invalid type ${typeof excerpt}`);
   }
 
+  String.prototype.trimEllip = function (length) {
+    return this.length > length ? this.substring(0, length) + '...' : this;
+  };
+
   let sanitized = excerpt;
-
-  // If the theme includes [...] as the more indication, clean it up to just ...
-
-  sanitized = sanitized.replace(/\s?\[&hellip;\]/, '&hellip;');
-
-  // If after the above replacement, the ellipsis includes 4 dots, it's
-  // the end of a setence
-
-  sanitized = sanitized.replace('....', '.');
-  sanitized = sanitized.replace('.&hellip;', '.');
-
-  // If the theme is including a "Continue..." link, remove it
-
-  sanitized = sanitized.replace(/\w*<a class="more-link".*<\/a>/, '');
+  sanitized = sanitized.trimEllip(180);
 
   return sanitized;
 }

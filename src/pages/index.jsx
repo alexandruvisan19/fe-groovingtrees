@@ -2,6 +2,7 @@ import useSite from 'hooks/use-site';
 import { getPaginatedPosts } from 'lib/posts';
 import { WebsiteJsonLd } from 'lib/json-ld';
 import Link from 'next/link';
+import Masonry from 'react-masonry-css';
 
 import Layout from 'components/Layout';
 import Header from 'components/Header';
@@ -14,6 +15,12 @@ import Background from 'assets/svg/background';
 export default function Home({ posts, pagination }) {
   const { metadata = {} } = useSite();
   const { title, description } = metadata;
+  const breakpointColumnsObj = {
+    default: 3,
+    1024: 3,
+    768: 2,
+    640: 1,
+  };
 
   return (
     <Layout>
@@ -29,14 +36,18 @@ export default function Home({ posts, pagination }) {
         </div>
         <Background />
       </Header>
-      <div className=" max-w-65xl m-auto md:pl-3 md:pr-3 text-center">
+      <div className="max-w-65xl m-auto pr-4 pl-4 text-center">
         <Section>
           <h2 className="mt-8 mb-4 pb-4 text-3xl border-b border-gray-200 font-bold">Recent Posts</h2>
-          <ul className="columns-1 md:columns-2 lg:columns-3 mb-14 gap-8">
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid bg-white"
+            columnClassName="my-masonry-grid_column"
+          >
             {posts.map((post) => {
               return (
-                <li
-                  className="max-w-lg shadow rounded-xl text-center md:text-left align-top relative hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer my-4 mx-1 inline-block group"
+                <div
+                  className="max-w-lg shadow rounded-xl text-center md:text-left align-top relative hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer my-4 mx-1 inline-block group break-inside"
                   key={post.slug}
                 >
                   <Link href={postPathBySlug(post.slug)}>
@@ -44,10 +55,10 @@ export default function Home({ posts, pagination }) {
                       <PostCard post={post} />
                     </a>
                   </Link>
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </Masonry>
 
           {pagination && (
             <Pagination

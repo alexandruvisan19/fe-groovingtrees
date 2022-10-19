@@ -43,8 +43,8 @@ const PostCard = ({ post, options = {} }) => {
       )}
 
       <div className="pt-1 pb-2 pr-5 pl-5">
-        <h3
-          className=" text-2xl font-bold pb-4 pt-1"
+        <h2
+          className="text-2xl font-bold pb-4 pt-1"
           dangerouslySetInnerHTML={{
             __html: title,
           }}
@@ -52,7 +52,7 @@ const PostCard = ({ post, options = {} }) => {
 
         {excerpt && (
           <div
-            className=" pb-4"
+            className="pb-4"
             dangerouslySetInnerHTML={{
               __html: sanitizeExcerpt(excerpt),
             }}

@@ -11,7 +11,9 @@ const Category = ({ categories, options = DEFAULT_METADATA_OPTIONS }) => {
         <div className="pt-2 pb-1 pr-5 pl-5">
           {compactCategories && (
             <p title={categories.map(({ name }) => name).join(', ')}>
-              <span className="bg-autumn-100 pt-1 pb-1 pr-3 pl-3 rounded-2xl font-semibold">#{categories[0].name}</span>
+              <span className="bg-autumn-100 pt-1 pb-1 pr-3 pl-3 rounded-2xl font-semibold text-sm hover:bg-autumn-500">
+                #{categories[0].name}
+              </span>
             </p>
           )}
           {!compactCategories && (
