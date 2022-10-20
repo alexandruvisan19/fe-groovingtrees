@@ -107,11 +107,6 @@ export const QUERY_POST_BY_SLUG = gql`
     post(id: $slug, idType: SLUG) {
       author {
         node {
-          avatar {
-            height
-            url
-            width
-          }
           id
           name
           slug
@@ -125,6 +120,13 @@ export const QUERY_POST_BY_SLUG = gql`
             id
             name
             slug
+            parent {
+              node {
+                name
+                slug
+                id
+              }
+            }
           }
         }
       }

@@ -26,7 +26,19 @@ import Breadcrumbs from 'components/Breadcrumbs';
 const SEARCH_HIDDEN = 'hidden';
 
 export default function Post({ post, socialImage }) {
-  const { title, metaTitle, description, date, author, categories, modified, featuredImage, content, slug } = post;
+  const {
+    title,
+    metaTitle,
+    description,
+    date,
+    author,
+    categories,
+    modified,
+    featuredImage,
+    content,
+    slug,
+    readingTime,
+  } = post;
   const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
   const formRef = useRef();
   const { query, results, search, clearSearch } = useSearch({
@@ -149,6 +161,8 @@ export default function Post({ post, socialImage }) {
 
   // const { posts: relatedPostsList, title: relatedPostsTitle } = related || {};
 
+  console.log(post);
+
   const helmetSettings = helmetSettingsFromMetadata(metadata);
 
   return (
@@ -158,7 +172,7 @@ export default function Post({ post, socialImage }) {
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
 
       <div className="max-w-65xl m-auto block lg:flex pt-0 md:pt-8">
-        <div className="prose prose-lg prose-w-md prose-img:rounded-xl prose-figcaption:text-center prose-a:text-autumn-500 hover:prose-a:text-autumn-300 hover:prose-img:shadow-lg max-w-none pl-4 pr-4 md:pr-12 lg:border-r mx-auto">
+        <div className="prose prose-w-md prose-img:rounded-xl prose-figcaption:text-center hover:prose-img:shadow-lg max-w-none pl-4 pr-4 md:pr-12 lg:border-r mx-auto">
           <HeaderPost>
             <Breadcrumbs categories={categories} options={metadataOptions} slug={slug} title={title} />
             <h1
@@ -167,7 +181,7 @@ export default function Post({ post, socialImage }) {
                 __html: title,
               }}
             />
-            <MetadataPost date={date} author={author} categories={categories} options={metadataOptions} />
+            <MetadataPost date={date} author={author} options={metadataOptions} readingTime={readingTime} />
             {featuredImage && (
               <FeaturedImage
                 {...featuredImage}
@@ -273,25 +287,26 @@ export async function getStaticProps({ params = {} } = {}) {
     };
   }
 
-  const { categories, databaseId: postId } = post;
-
   const props = {
     post,
     socialImage: `${process.env.OG_IMAGE_DIRECTORY}/${params?.slug}.png`,
   };
 
-  const { category: relatedCategory, posts: relatedPosts } = (await getRelatedPosts(categories, postId)) || {};
-  const hasRelated = relatedCategory && Array.isArray(relatedPosts) && relatedPosts.length;
+  // const { categories, databaseId: postId } = post;
 
-  if (hasRelated) {
-    props.related = {
-      posts: relatedPosts,
-      title: {
-        name: relatedCategory.name || null,
-        link: categoryPathBySlug(relatedCategory.slug),
-      },
-    };
-  }
+  // const { category: relatedCategory, posts: relatedPosts } = (await getRelatedPosts(categories, postId)) || {};
+  // console.log(relatedPosts);
+  // const hasRelated = relatedCategory && Array.isArray(relatedPosts) && relatedPosts.length;
+
+  // if (hasRelated) {
+  //   props.related = {
+  //     posts: relatedPosts,
+  //     title: {
+  //       name: relatedCategory.name || null,
+  //       link: categoryPathBySlug(relatedCategory.slug),
+  //     },
+  //   };
+  // }
 
   return {
     props,
