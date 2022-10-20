@@ -17,7 +17,7 @@ import Section from 'components/Section';
 import Container from 'components/Container';
 import Content from 'components/Content';
 import MetadataPost from 'components/MetadataPost';
-// import FeaturedImage from 'components/FeaturedImage';
+import FeaturedImage from 'components/FeaturedImage';
 import TableOfContents from 'components/TableOfContents';
 import RecentPosts from 'components/RecentPosts';
 import Breadcrumbs from 'components/Breadcrumbs';
@@ -36,7 +36,7 @@ export default function Post({ post, socialImage }) {
     author,
     categories,
     modified,
-    // featuredImage,
+    featuredImage,
     content,
     slug,
     readingTime,
@@ -185,13 +185,13 @@ export default function Post({ post, socialImage }) {
 
             <MetadataPost date={date} author={author} options={metadataOptions} readingTime={readingTime} />
 
-            {/* {featuredImage && (
+            {featuredImage && (
               <FeaturedImage
                 {...featuredImage}
                 src={featuredImage.sourceUrl}
                 dangerouslySetInnerHTML={featuredImage.caption}
               />
-            )} */}
+            )}
           </HeaderPost>
           <Content>
             <Section>
