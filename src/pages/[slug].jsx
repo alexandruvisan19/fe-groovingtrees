@@ -2,8 +2,7 @@ import Link from 'next/link';
 import { Helmet } from 'react-helmet';
 import { useState, useRef, useEffect, useCallback } from 'react';
 
-import { getPostBySlug, getRecentPosts, getRelatedPosts, postPathBySlug } from 'lib/posts';
-import { categoryPathBySlug } from 'lib/categories';
+import { getPostBySlug, getRecentPosts, postPathBySlug } from 'lib/posts';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
@@ -22,6 +21,9 @@ import FeaturedImage from 'components/FeaturedImage';
 import TableOfContents from 'components/TableOfContents';
 import RecentPosts from 'components/RecentPosts';
 import Breadcrumbs from 'components/Breadcrumbs';
+
+// import { getRelatedPosts } from 'lib/posts';
+// import { categoryPathBySlug } from 'lib/categories';
 
 const SEARCH_HIDDEN = 'hidden';
 
