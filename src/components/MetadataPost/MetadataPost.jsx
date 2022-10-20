@@ -9,14 +9,16 @@ const MetadataPost = ({ author, date, readingTime }) => {
         {date && author && (
           <div className="flex">
             <time className="flex items-center" pubdate="pubdate" dateTime={date}>
-              <FcCalendar /> &nbsp; {formatDate(date)} <TbMinusVertical className="text-lg" />
+              <FcCalendar className="text-xl" />
+              &nbsp;{formatDate(date)} <TbMinusVertical />
             </time>
             <span>By {author.name}</span>
           </div>
         )}
       </div>
       <div className="flex items-center">
-        <FcClock /> &nbsp;
+        <FcClock className="text-xl" />
+        &nbsp;
         {readingTime} min read
       </div>
     </div>

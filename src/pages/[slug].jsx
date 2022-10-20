@@ -17,7 +17,7 @@ import Section from 'components/Section';
 import Container from 'components/Container';
 import Content from 'components/Content';
 import MetadataPost from 'components/MetadataPost';
-import FeaturedImage from 'components/FeaturedImage';
+// import FeaturedImage from 'components/FeaturedImage';
 import TableOfContents from 'components/TableOfContents';
 import RecentPosts from 'components/RecentPosts';
 import Breadcrumbs from 'components/Breadcrumbs';
@@ -36,7 +36,7 @@ export default function Post({ post, socialImage }) {
     author,
     categories,
     modified,
-    featuredImage,
+    // featuredImage,
     content,
     slug,
     readingTime,
@@ -175,20 +175,23 @@ export default function Post({ post, socialImage }) {
         <div className="prose prose-w-md prose-img:rounded-xl prose-figcaption:text-center hover:prose-img:shadow-lg max-w-none pl-4 pr-4 md:pr-12 lg:border-r mx-auto">
           <HeaderPost>
             <Breadcrumbs categories={categories} options={metadataOptions} slug={slug} title={title} />
+
             <h1
               className="!mb-4"
               dangerouslySetInnerHTML={{
                 __html: title,
               }}
             />
+
             <MetadataPost date={date} author={author} options={metadataOptions} readingTime={readingTime} />
-            {featuredImage && (
+
+            {/* {featuredImage && (
               <FeaturedImage
                 {...featuredImage}
                 src={featuredImage.sourceUrl}
                 dangerouslySetInnerHTML={featuredImage.caption}
               />
-            )}
+            )} */}
           </HeaderPost>
           <Content>
             <Section>
