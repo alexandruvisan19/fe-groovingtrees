@@ -163,8 +163,6 @@ export default function Post({ post, socialImage }) {
 
   // const { posts: relatedPostsList, title: relatedPostsTitle } = related || {};
 
-  console.log(post);
-
   const helmetSettings = helmetSettingsFromMetadata(metadata);
 
   return (
@@ -297,7 +295,6 @@ export async function getStaticProps({ params = {} } = {}) {
   // const { categories, databaseId: postId } = post;
 
   // const { category: relatedCategory, posts: relatedPosts } = (await getRelatedPosts(categories, postId)) || {};
-  // console.log(relatedPosts);
   // const hasRelated = relatedCategory && Array.isArray(relatedPosts) && relatedPosts.length;
 
   // if (hasRelated) {
