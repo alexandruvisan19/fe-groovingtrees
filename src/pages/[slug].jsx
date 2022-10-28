@@ -135,6 +135,7 @@ export default function Post({ post, socialImage }) {
 
 export async function getStaticProps({ params = {} } = {}) {
   const { post } = await getPostBySlug(params?.slug);
+
   if (!post) {
     return {
       props: {},

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const ImagePost = ({ children, width = '1200', height = '630', src, alt, srcSet, dangerouslySetInnerHTML }) => {
+const ImagePost = ({ children, width, height, src, alt, srcSet, dangerouslySetInnerHTML }) => {
   return (
     <figure className="!mt-4">
       <div>
@@ -8,8 +8,8 @@ const ImagePost = ({ children, width = '1200', height = '630', src, alt, srcSet,
           className="rounded-lg"
           placeholder="blur"
           blurDataURL={src}
-          width={width}
-          height={height}
+          width={width || '780'}
+          height={height || '490'}
           src={src}
           alt={alt || ''}
           srcSet={srcSet}
