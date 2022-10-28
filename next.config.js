@@ -16,7 +16,7 @@ const nextConfig = {
   images: { domains: ['i0.wp.com', 'i1.wp.com', 'i2.wp.com'] },
   reactStrictMode: true,
   swcMinify: true,
-  trailingSlash: true,
+  trailingSlash: false,
 
   env: {
     OG_IMAGE_DIRECTORY: '/images/og',
