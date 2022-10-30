@@ -8,12 +8,12 @@ import { IoClose } from 'react-icons/io5';
 import Section from 'components/Section';
 
 import { categoryPathBySlug } from 'lib/categories';
+import Logo from 'assets/svg/logo';
 
 const Nav = () => {
   const [menu, setMenu] = useState(true);
 
-  const { metadata = {}, categories = [] } = useSite();
-  const { title } = metadata;
+  const { categories = [] } = useSite();
 
   function handleMenu() {
     let list = document.querySelector('.menu');
@@ -35,7 +35,9 @@ const Nav = () => {
       <Section className="max-w-65xl m-auto">
         <div className="flex justify-between items-center z-15">
           <Link href="/">
-            <a className="text-gray-900 hover:text-black block font-bold text-2xl p-4">{title}</a>
+            <a className="text-gray-900 hover:text-black block font-bold text-2xl pt-0 pb-0 pr-2 pl-2">
+              <Logo />
+            </a>
           </Link>
 
           {categories.length >= 1 && (
