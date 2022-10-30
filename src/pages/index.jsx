@@ -2,7 +2,7 @@ import useSite from 'hooks/use-site';
 import { getPaginatedPosts } from 'lib/posts';
 import { WebsiteJsonLd } from 'lib/json-ld';
 import Link from 'next/link';
-import Masonry from 'react-masonry-css';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 import Layout from 'components/Layout';
 import Header from 'components/Header';
@@ -15,12 +15,6 @@ import Background from 'assets/svg/background';
 export default function Home({ posts, pagination }) {
   const { metadata = {} } = useSite();
   const { title, description } = metadata;
-  const breakpointColumnsObj = {
-    default: 3,
-    1024: 3,
-    768: 2,
-    640: 1,
-  };
 
   return (
     <Layout>
@@ -39,28 +33,25 @@ export default function Home({ posts, pagination }) {
       <div className="max-w-65xl m-auto pr-4 pl-4 text-center">
         <Section>
           <h2 className="mt-8 mb-4 pb-4 text-3xl border-b border-gray-200 font-bold">Recent Posts</h2>
-          {posts && (
-            <Masonry
-              breakpointCols={breakpointColumnsObj}
-              className="my-masonry-grid bg-white"
-              columnClassName="my-masonry-grid_column"
-            >
-              {posts.map((post) => {
-                return (
-                  <div
-                    className="max-w-lg shadow rounded-xl text-center md:text-left align-top relative hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer my-4 mx-1 inline-block group break-inside"
-                    key={post.slug}
-                  >
-                    <Link href={postPathBySlug(post.slug)}>
-                      <a>
-                        <PostCard post={post} />
-                      </a>
-                    </Link>
-                  </div>
-                );
-              })}
+          <ResponsiveMasonry columnsCountBreakPoints={{ 540: 1, 550: 2, 1050: 3 }}>
+            <Masonry>
+              {posts &&
+                posts.map((post) => {
+                  return (
+                    <div
+                      className="max-w-lg shadow rounded-xl text-center md:text-left align-top relative hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer my-4 mx-4 inline-block group break-inside"
+                      key={post.slug}
+                    >
+                      <Link href={postPathBySlug(post.slug)}>
+                        <a>
+                          <PostCard post={post} />
+                        </a>
+                      </Link>
+                    </div>
+                  );
+                })}
             </Masonry>
-          )}
+          </ResponsiveMasonry>
 
           {pagination && (
             <Pagination
