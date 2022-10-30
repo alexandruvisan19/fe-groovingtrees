@@ -18,6 +18,7 @@ import TableOfContents from 'components/TableOfContents';
 import RecentPosts from 'components/RecentPosts';
 import Breadcrumbs from 'components/Breadcrumbs';
 import SearchBar from 'components/SearchBar';
+import { useCallback, useEffect, useState } from 'react';
 
 // import { getRelatedPosts } from 'lib/posts';
 // import { categoryPathBySlug } from 'lib/categories';
@@ -36,6 +37,21 @@ export default function Post({ post, socialImage }) {
     slug,
     readingTime,
   } = post;
+
+  const [width, setWidth] = useState(typeof window !== 'undefined' && window.innerWidth);
+
+  const handleWindowSizeChange = useCallback(() => {
+    setWidth(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, [handleWindowSizeChange]);
+
+  const isMobile = width <= 768;
 
   const { metadata: siteMetadata = {}, homepage, recentPosts = [] } = useSite();
 
@@ -95,6 +111,8 @@ export default function Post({ post, socialImage }) {
                 dangerouslySetInnerHTML={featuredImage.caption}
               />
             )}
+
+            {isMobile && <TableOfContents content={content} isMobile={true} />}
           </HeaderPost>
 
           <Content>
@@ -123,11 +141,13 @@ export default function Post({ post, socialImage }) {
           </Content>
         </div>
 
-        <aside className="prose prose-lg md:prose-xl mt-2 sm:ml-6 pl-4 pr-4 hidden lg:block">
-          <SearchBar />
-          {recentPosts.length > 0 && <RecentPosts recentPosts={recentPosts} />}
-          <TableOfContents content={content} />
-        </aside>
+        {!isMobile && (
+          <aside className="prose prose-lg md:prose-xl mt-2 sm:ml-6 pl-4 pr-4">
+            <SearchBar />
+            {recentPosts.length > 0 && <RecentPosts recentPosts={recentPosts} />}
+            <TableOfContents content={content} isMobile={false} />
+          </aside>
+        )}
       </div>
     </Layout>
   );

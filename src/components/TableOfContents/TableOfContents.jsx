@@ -1,11 +1,11 @@
 import useToc from 'hooks/use-toc';
 import { useState } from 'react';
-import { BsArrowUpShort } from 'react-icons/bs';
-import { BsArrowDownShort } from 'react-icons/bs';
+import { BsFileEarmarkArrowDownFill } from 'react-icons/bs';
+import { BsFileEarmarkArrowUpFill } from 'react-icons/bs';
 
-const TableOfContents = ({ content }) => {
+const TableOfContents = ({ content, isMobile }) => {
   const toc = useToc(content);
-  const [tocVisibility, setTocVisibility] = useState(true);
+  const [tocVisibility, setTocVisibility] = useState(isMobile);
 
   function hideHandler() {
     setTocVisibility((prevSetTocVisibility) => !prevSetTocVisibility);
@@ -14,17 +14,23 @@ const TableOfContents = ({ content }) => {
   return (
     <div className="sticky top-20">
       <div>
-        <p className="font-semibold !mb-0 border-b border-gray-200 inline">Table of Contents 📑</p>
+        <p className="text-black font-semibold !mb-0 border-b border-gray-200 inline text-xl">Table of Contents</p>
         {tocVisibility ? (
-          <BsArrowUpShort onClick={hideHandler} className="inline" />
+          <BsFileEarmarkArrowDownFill
+            onClick={hideHandler}
+            className="text-neutral-800 text-xl inline relative bottom-1 left-1 cursor-pointer"
+          />
         ) : (
-          <BsArrowDownShort onClick={hideHandler} className="inline" />
+          <BsFileEarmarkArrowUpFill
+            onClick={hideHandler}
+            className="text-neutral-800 text-xl inline relative bottom-1 left-1 cursor-pointer"
+          />
         )}
       </div>
-      <ul className={'list-none !pl-0 !text-base !mt-0 ' + (tocVisibility ? 'block' : 'hidden')}>
+      <ul className={'list-none !pl-0 !text-lg !mt-0 ' + (tocVisibility ? 'hidden' : 'block')}>
         {toc.map(({ id, title }) => {
           return (
-            <li className="!pl-0" key={id}>
+            <li className="!pl-0 !mb-0 !mt-2" key={id}>
               <a className="no-underline hover:text-autumn-500 hover:underline" href={`#${id}`}>
                 {title}
               </a>
