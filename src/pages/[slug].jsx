@@ -17,7 +17,6 @@ import RecentPosts from 'components/RecentPosts';
 import SearchBar from 'components/SearchBar';
 import TableOfContents from 'components/TableOfContents';
 import Breadcrumbs from 'components/Breadcrumbs';
-import { useEffect } from 'react';
 import useWindowSize from 'hooks/use-window-size';
 
 // import { getRelatedPosts } from 'lib/posts';
