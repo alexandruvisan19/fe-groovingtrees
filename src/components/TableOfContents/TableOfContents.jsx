@@ -12,7 +12,7 @@ const TableOfContents = ({ content, isMobile }) => {
   }
 
   return (
-    <div className="sticky top-20">
+    <div className={`${tocVisibility ? '' : 'sticky top-20'}`}>
       <div>
         <p className="text-black font-semibold !mb-0 border-b border-gray-200 inline text-xl">Table of Contents</p>
         {tocVisibility ? (
