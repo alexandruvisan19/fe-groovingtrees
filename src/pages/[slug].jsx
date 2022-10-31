@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet';
 
 import { getPostBySlug, getRecentPosts } from 'lib/posts';
-import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
@@ -13,12 +12,13 @@ import Section from 'components/Section';
 import Container from 'components/Container';
 import Content from 'components/Content';
 import MetadataPost from 'components/MetadataPost';
-import FeaturedImage from 'components/FeaturedImage';
-import TableOfContents from 'components/TableOfContents';
+// import FeaturedImage from 'components/FeaturedImage';
 import RecentPosts from 'components/RecentPosts';
-import Breadcrumbs from 'components/Breadcrumbs';
 import SearchBar from 'components/SearchBar';
-import { useCallback, useEffect, useState } from 'react';
+import TableOfContents from 'components/TableOfContents';
+import Breadcrumbs from 'components/Breadcrumbs';
+import { useEffect } from 'react';
+import useWindowSize from 'hooks/use-window-size';
 
 // import { getRelatedPosts } from 'lib/posts';
 // import { categoryPathBySlug } from 'lib/categories';
@@ -31,27 +31,22 @@ export default function Post({ post, socialImage }) {
     date,
     author,
     categories,
-    modified,
-    featuredImage,
+    // featuredImage,
     content,
     slug,
     readingTime,
   } = post;
 
-  const [width, setWidth] = useState(typeof window !== 'undefined' && window.innerWidth);
-
-  const handleWindowSizeChange = useCallback(() => {
-    setWidth(window.innerWidth);
-  }, []);
+  const size = useWindowSize();
 
   useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange);
+    window.addEventListener('resize', size);
     return () => {
-      window.removeEventListener('resize', handleWindowSizeChange);
+      window.removeEventListener('resize', size);
     };
-  }, [handleWindowSizeChange]);
+  }, [size]);
 
-  const isMobile = width <= 768;
+  const isMobile = size <= 768;
 
   const { metadata: siteMetadata = {}, homepage, recentPosts = [] } = useSite();
 
@@ -104,17 +99,16 @@ export default function Post({ post, socialImage }) {
             />
             <MetadataPost date={date} author={author} options={metadataOptions} readingTime={readingTime} />
 
-            {featuredImage && (
+            {/* {featuredImage && (
               <FeaturedImage
                 {...featuredImage}
                 src={featuredImage.sourceUrl}
                 dangerouslySetInnerHTML={featuredImage.caption}
               />
-            )}
-
-            {isMobile && <TableOfContents content={content} isMobile={true} />}
+            )} */}
           </HeaderPost>
 
+          {isMobile && <TableOfContents content={content} isMobile={true} />}
           <Content>
             <Section>
               <Container>
@@ -123,9 +117,8 @@ export default function Post({ post, socialImage }) {
                     __html: content,
                   }}
                 />
-                <div className="text-center mt-8 text-gray-500 text-base">
-                  <p>Last updated on {formatDate(modified)}.</p>
-                  {/* {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
+                {/* <div className="text-center mt-8 text-gray-500 text-base">
+                  {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
                     <div>
                       <span>
                         More from{' '}
@@ -134,8 +127,8 @@ export default function Post({ post, socialImage }) {
                         </Link>
                       </span>
                     </div>
-                  )} */}
-                </div>
+                  )}
+                </div> */}
               </Container>
             </Section>
           </Content>
