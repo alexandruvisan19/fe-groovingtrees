@@ -1,11 +1,11 @@
-import { formatInTimeZone } from 'date-fns-tz';
+import dateFormat from 'dateformat';
 
 /**
  * formatDate
  */
 
 export function formatDate(date) {
-  return formatInTimeZone(new Date(date), 'America/New_York', 'yyyy-MM-dd');
+  return dateFormat(new Date(date), 'mmm dS, yyyy');
 }
 
 /**
