@@ -39,14 +39,7 @@ export default function Post({ post, socialImage }) {
 
   const size = useWindowSize();
 
-  useEffect(() => {
-    window.addEventListener('resize', size);
-    return () => {
-      window.removeEventListener('resize', size);
-    };
-  }, [size]);
-
-  const isMobile = size <= 768;
+  const isMobile = size.width <= 768;
 
   const { metadata: siteMetadata = {}, homepage, recentPosts = [] } = useSite();
 
