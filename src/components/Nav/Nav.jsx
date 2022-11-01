@@ -35,7 +35,10 @@ const Nav = () => {
       <Section className="max-w-65xl m-auto">
         <div className="flex justify-between items-center z-15">
           <Link href="/">
-            <a className="text-gray-900 hover:text-black block font-bold text-2xl pt-0 pb-0 pr-2 pl-2">
+            <a
+              className="text-gray-900 hover:text-black block font-bold text-2xl pt-0 pb-0 pr-2 pl-2"
+              aria-label="Logo"
+            >
               <Logo />
             </a>
           </Link>
