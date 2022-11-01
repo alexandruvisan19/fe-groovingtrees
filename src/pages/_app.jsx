@@ -34,6 +34,21 @@ function App({ Component, pageProps = {}, metadata, recentPosts, categories, men
     };
   }, [router.events]);
 
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').then(
+          function (registration) {
+            console.log('Service Worker registration successful with scope: ', registration.scope);
+          },
+          function (err) {
+            console.log('Service Worker registration failed: ', err);
+          }
+        );
+      });
+    }
+  }, []);
+
   return (
     <>
       <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`} />

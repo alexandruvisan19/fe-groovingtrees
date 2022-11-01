@@ -32,7 +32,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html {...this.helmetHtmlAttrComponents}>
-        <Head>{this.helmetHeadComponents}</Head>
+        <Head>
+          {this.helmetHeadComponents}
+          <meta name="theme-color" content="#ff9f32" />
+        </Head>
         <body className="antialiased min-h-screen" {...this.helmetBodyAttrComponents}>
           <Main />
           <NextScript />
