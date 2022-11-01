@@ -17,7 +17,7 @@ import RecentPosts from 'components/RecentPosts';
 import SearchBar from 'components/SearchBar';
 import TableOfContents from 'components/TableOfContents';
 import Breadcrumbs from 'components/Breadcrumbs';
-import useWindowSize from 'hooks/use-window-size';
+// import useWindowSize from 'hooks/use-window-size';
 
 // import { getRelatedPosts } from 'lib/posts';
 // import { categoryPathBySlug } from 'lib/categories';
@@ -40,9 +40,9 @@ export default function Post({ post, socialImage }) {
     readingTime,
   } = post;
 
-  const size = useWindowSize();
+  // const size = useWindowSize();
 
-  const isMobile = size.width <= 768;
+  // const isMobile = size.width <= 768;
 
   const { metadata: siteMetadata = {}, homepage, recentPosts = [] } = useSite();
 
@@ -129,13 +129,11 @@ export default function Post({ post, socialImage }) {
           </Content>
         </div>
 
-        {!isMobile && (
-          <aside className="prose prose-lg md:prose-xl mt-2 sm:ml-6 pl-4 pr-4">
-            <SearchBar />
-            {recentPosts.length > 0 && <RecentPosts recentPosts={recentPosts} />}
-            <TableOfContents content={content} isMobile={false} />
-          </aside>
-        )}
+        <aside className="prose prose-lg md:prose-xl mt-2 sm:ml-6 pl-4 pr-4 hidden lg:block">
+          <SearchBar />
+          {recentPosts.length > 0 && <RecentPosts recentPosts={recentPosts} />}
+          <TableOfContents content={content} isMobile={false} />
+        </aside>
       </div>
     </Layout>
   );

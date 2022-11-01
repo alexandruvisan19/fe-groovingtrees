@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import Link from 'next/link';
 
 import useSite from 'hooks/use-site';
-import { FiMenu } from 'react-icons/fi';
-import { IoClose } from 'react-icons/io5';
+// import { useState } from 'react';
+// import { FiMenu } from 'react-icons/fi';
+// import { IoClose } from 'react-icons/io5';
 
 import Section from 'components/Section';
 
@@ -11,24 +11,24 @@ import { categoryPathBySlug } from 'lib/categories';
 import Logo from 'assets/svg/logo';
 
 const Nav = () => {
-  const [menu, setMenu] = useState(true);
+  // const [menu, setMenu] = useState(true);
 
   const { categories = [] } = useSite();
 
-  function handleMenu() {
-    let list = document.querySelector('.menu');
+  // function handleMenu() {
+  //   let list = document.querySelector('.menu');
 
-    if (menu) {
-      list.classList.add('opacity-100');
-      list.classList.remove('opacity-0');
-      list.classList.remove('hidden');
-    } else {
-      list.classList.add('opacity-0');
-      list.classList.add('hidden');
-      list.classList.remove('opacity-100');
-    }
-    setMenu(!menu);
-  }
+  //   if (menu) {
+  //     list.classList.add('opacity-100');
+  //     list.classList.remove('opacity-0');
+  //     list.classList.remove('hidden');
+  //   } else {
+  //     list.classList.add('opacity-0');
+  //     list.classList.add('hidden');
+  //     list.classList.remove('opacity-100');
+  //   }
+  //   setMenu(!menu);
+  // }
 
   return (
     <nav className="sticky top-0 z-50  border-b bg-white border-gray-200">
@@ -42,14 +42,16 @@ const Nav = () => {
 
           {categories.length >= 1 && (
             <>
-              <span className="md:hidden mr-4 block cursor-pointer">
+              {/* <span className="md:hidden mr-4 block cursor-pointer">
                 {menu ? (
                   <FiMenu name="menu" className="text-3xl" onClick={handleMenu} />
                 ) : (
                   <IoClose className="text-3xl" name="close" onClick={handleMenu} />
                 )}
-              </span>
-              <ul className="menu md:flex md:items-center z-[-1] text-lg md:z-auto md:static absolute  w-full left-0 md:w-auto md:py-0 md:pl-0 pl-4 pb-4 md:opacity-100 opacity-0 top-[65px] transition shadow-lg md:shadow-none bg-white hidden">
+              </span> */}
+              {/* className="menu md:flex md:items-center z-[-1] text-lg md:z-auto md:static absolute  w-full left-0 md:w-auto md:py-0 md:pl-0 pl-4 pb-4 md:opacity-100 opacity-0 top-[65px] transition shadow-lg md:shadow-none bg-white hidden" */}
+
+              <ul className="flex">
                 {categories.map((category) => {
                   const { id, slug, name } = category;
                   return (
