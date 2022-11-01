@@ -22,6 +22,10 @@ import useWindowSize from 'hooks/use-window-size';
 // import { getRelatedPosts } from 'lib/posts';
 // import { categoryPathBySlug } from 'lib/categories';
 
+export const config = {
+  unstable_runtimeJS: false,
+};
+
 export default function Post({ post, socialImage }) {
   const {
     title,
