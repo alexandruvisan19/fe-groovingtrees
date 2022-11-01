@@ -100,7 +100,6 @@ export default function Post({ post, socialImage }) {
             )} */}
           </HeaderPost>
 
-          {isMobile && <TableOfContents content={content} isMobile={true} />}
           <Content>
             <Section>
               <Container>
