@@ -1,4 +1,4 @@
-import { getPaginatedPosts } from 'lib/posts';
+import { getAllPosts, getPagesCount, getPaginatedPosts } from 'lib/posts';
 import usePageMetadata from 'hooks/use-page-metadata';
 
 import TemplateArchive from 'templates/archive';
@@ -22,14 +22,6 @@ export async function getStaticProps({ params = {} } = {}) {
     currentPage: params?.page,
     queryIncludes: 'archive',
   });
-
-  if (!pagination.currentPage) {
-    return {
-      props: {},
-      notFound: true,
-    };
-  }
-
   return {
     props: {
       posts,
@@ -42,30 +34,16 @@ export async function getStaticProps({ params = {} } = {}) {
 }
 
 export async function getStaticPaths() {
-  // By default, we don't render any Pagination pages as
-  // we're considering them non-critical pages
-
-  // To enable pre-rendering of Category pages:
-
-  // 1. Add import to the top of the file
-  //
-  // import { getAllPosts, getPagesCount } from 'lib/posts';
-
-  // 2. Uncomment the below
-  //
-  // const { posts } = await getAllPosts({
-  //   queryIncludes: 'index',
-  // });
-  // const pagesCount = await getPagesCount(posts);
-
-  // const paths = [...new Array(pagesCount)].map((_, i) => {
-  //   return { params: { page: String(i + 1) } };
-  // });
-
-  // 3. Update `paths` in the return statement below to reference the `paths` constant above
+  const { posts } = await getAllPosts({
+    queryIncludes: 'index',
+  });
+  const pagesCount = await getPagesCount(posts);
+  const paths = [...new Array(pagesCount)].map((_, i) => {
+    return { params: { page: String(i + 1) } };
+  });
 
   return {
-    paths: [],
-    fallback: 'blocking',
+    paths,
+    fallback: false,
   };
 }

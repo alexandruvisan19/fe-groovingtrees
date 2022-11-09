@@ -110,7 +110,7 @@ const Search = () => {
         type="search"
         name="q"
         value={query || ''}
-        onChange={handleOnSearch}
+        onChange={(e) => handleOnSearch(e)}
         autoComplete="off"
         placeholder="Search this website"
         required
